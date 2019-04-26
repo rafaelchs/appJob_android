@@ -20,11 +20,12 @@ public class LoginActivity extends AppCompatActivity {
         btnCreate = (Button) findViewById(R.id.btnCreate);
     }
 
-    public void onClick_create_account(View v){
+    public void onClick_createAccount(View v){
 
         Intent intent = new Intent(LoginActivity.this,accountActivity.class);
         startActivity(intent);
         finish();
+
 
     }
 

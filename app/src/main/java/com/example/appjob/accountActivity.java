@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.appjob.iRetrofit.PersonService;
 import com.example.appjob.model.Person;
+import com.example.appjob.retrofitRemote.APIUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,6 +22,8 @@ public class accountActivity extends AppCompatActivity {
     private Button btnCreate;
     private Button btnBack;
     private EditText txtName, txtLastName, txtPhone, txtEmail, txtPassword;
+    public PersonService pService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,8 @@ public class accountActivity extends AppCompatActivity {
         txtEmail = (EditText) findViewById(R.id.editTextEmail);
         txtPassword = (EditText) findViewById(R.id.editTextPassword);
 
+        pService = APIUtils.getUserService();
+
     }
 
     public void onClick_save(View v){
@@ -45,7 +51,16 @@ public class accountActivity extends AppCompatActivity {
 
         }else{
 
-            Intent intent = new Intent(accountActivity.this,MainActivity.class);
+            Person obj = new Person();
+            obj.setName(txtName.getText().toString());
+            obj.setLastname(txtLastName.getText().toString());
+            obj.setPhone_number(Integer.valueOf(txtPhone.getText().toString()));
+            obj.setEmail(txtEmail.getText().toString());
+            obj.setPassword(txtPassword.getText().toString());
+
+            add_person(obj);
+
+            Intent intent = new Intent(accountActivity.this,LoginActivity.class);
             startActivity(intent);
             finish();
         }
@@ -61,26 +76,26 @@ public class accountActivity extends AppCompatActivity {
 
     }
 
-    public void add_person(){
+    public void add_person(Person objPerson){
 
 
-       /* Call<Person> call = petService.insert_pet(objPet);
-        call.enqueue(new Callback<Pet>() {
+        Call<Person> call = pService.insert_person(objPerson);
+        call.enqueue(new Callback<Person>() {
             @Override
-            public void onResponse(Call<Pet> call, Response<Pet> response) {
+            public void onResponse(Call<Person> call, Response<Person> response) {
 
                 if (response.isSuccessful()){
 
-                    Toast.makeText(MainActivity.this, "Added successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(accountActivity.this, "Added successfully!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Pet> call, Throwable t) {
+            public void onFailure(Call<Person> call, Throwable t) {
 
                 Log.e("ERROR: ", t.getMessage());
             }
-        });*/
+        });
 
     }
 }

@@ -27,7 +27,8 @@
             android:background="@drawable/text_circle"
             android:textColor="@color/colorPrimaryText"
             android:ems="10"
-            android:hint="Name"
+            android:hint="Email"
+            android:paddingLeft="80dp"
             android:inputType="textPersonName"
             tools:layout_editor_absoluteX="30dp"
             tools:layout_editor_absoluteY="46dp" />
@@ -42,6 +43,7 @@
             android:ems="10"
             android:textColor="@color/colorPrimaryText"
             android:inputType="textPassword"
+            android:paddingLeft="60dp"
             tools:layout_editor_absoluteX="39dp"
             tools:layout_editor_absoluteY="116dp" />
 
@@ -68,7 +70,7 @@
             android:background="@drawable/btn_circle"
             android:text="New Account"
             android:textStyle="bold"
-            android:onClick="onClick_create_account"
+            android:onClick="onClick_createAccount"
             android:textColor="@color/colorText"
             tools:layout_editor_absoluteX="68dp"
             tools:layout_editor_absoluteY="266dp" />
