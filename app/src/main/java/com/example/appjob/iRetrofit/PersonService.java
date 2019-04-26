@@ -26,4 +26,6 @@ public interface PersonService {
 
     @PUT("update/{id}")
     Call<Person>update_person(@Path("id") int id,@Body Person objPet);
+
+    Call login(@Path("email") String email,@Path("password") String password);
 }
