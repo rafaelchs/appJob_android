@@ -15,15 +15,15 @@ import retrofit2.http.Path;
 public interface PersonService {
 
 
-    @POST("/add")
-    Call<Person> insert_person(@Body Person objPet);
+    @POST("add")
+    Call<Person> insert_person(@Body Person objPerson);
 
-    @GET("/show")
+    @GET("show")
     Call<List<Person>>list();
 
-    @DELETE("/delete/{id}")
+    @DELETE("delete/{id}")
     Call<Person>delete_person(@Path("id") int id);
 
-    @PUT("/update/{id}")
+    @PUT("update/{id}")
     Call<Person>update_person(@Path("id") int id,@Body Person objPet);
 }

@@ -22,7 +22,7 @@ public class accountActivity extends AppCompatActivity {
     private Button btnCreate;
     private Button btnBack;
     private EditText txtName, txtLastName, txtPhone, txtEmail, txtPassword;
-    public PersonService pService;
+    public PersonService personService;
 
 
     @Override
@@ -33,12 +33,12 @@ public class accountActivity extends AppCompatActivity {
         btnCreate = (Button) findViewById(R.id.btnSave);
         btnBack = (Button) findViewById(R.id.btnBack);
         txtName = (EditText) findViewById(R.id.editTextName);
-        txtLastName = (EditText) findViewById(R.id.editTextLastname);
+        txtLastName = (EditText) findViewById(R.id.editTextlast);
         txtPhone = (EditText) findViewById(R.id.editTextPhone_number);
         txtEmail = (EditText) findViewById(R.id.editTextEmail);
         txtPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        pService = APIUtils.getUserService();
+        personService = APIUtils.getUserService();
 
     }
 
@@ -53,12 +53,13 @@ public class accountActivity extends AppCompatActivity {
 
             Person obj = new Person();
             obj.setName(txtName.getText().toString());
-            obj.setLastname(txtLastName.getText().toString());
+            obj.setSurname(txtLastName.getText().toString());
             obj.setPhone_number(Integer.valueOf(txtPhone.getText().toString()));
             obj.setEmail(txtEmail.getText().toString());
             obj.setPassword(txtPassword.getText().toString());
 
             add_person(obj);
+            clean();
 
             Intent intent = new Intent(accountActivity.this,LoginActivity.class);
             startActivity(intent);
@@ -78,8 +79,7 @@ public class accountActivity extends AppCompatActivity {
 
     public void add_person(Person objPerson){
 
-
-        Call<Person> call = pService.insert_person(objPerson);
+        Call<Person> call = personService.insert_person(objPerson);
         call.enqueue(new Callback<Person>() {
             @Override
             public void onResponse(Call<Person> call, Response<Person> response) {
@@ -97,5 +97,14 @@ public class accountActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void clean(){
+
+        txtName.setText(null);
+        txtLastName.setText(null);
+        txtPhone.setText(null);
+        txtEmail.setText(null);
+        txtPassword.setText(null);
     }
 }

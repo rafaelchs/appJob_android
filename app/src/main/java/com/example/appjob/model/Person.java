@@ -11,9 +11,9 @@ public class Person {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("lastname")
+    @SerializedName("surname")
     @Expose
-    private String lastname;
+    private String surname;
     @SerializedName("phone_number")
     @Expose
     private int phone_number;
@@ -43,12 +43,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getPhone_number() {
